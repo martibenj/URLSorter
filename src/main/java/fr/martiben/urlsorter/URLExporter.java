@@ -1,4 +1,4 @@
-package fr.martiben;
+package fr.martiben.urlsorter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,8 +10,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import fr.martiben.comparator.VideoComparator;
-import fr.martiben.network.NetworkHelper;
+import fr.martiben.urlsorter.comparator.VideoComparator;
+import fr.martiben.urlsorter.network.NetworkHelper;
 
 public class URLExporter
 {
