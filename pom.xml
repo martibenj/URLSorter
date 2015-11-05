@@ -13,9 +13,9 @@
 	</organization>
 
 	<scm>
-		<connection>scm:git:https://github.com/martibenj/urlsorter.git</connection>
-		<url>https://github.com/martibenj/urlsorter.git</url>
-		<developerConnection>https://github.com/martibenj/urlsorter.git</developerConnection>
+		<connection>scm:git:https://github.com/martibenj/urlSorter.git</connection>
+		<url>https://github.com/martibenj/urlSorter.git</url>
+		<developerConnection>https://github.com/martibenj/urlSorter.git</developerConnection>
 	</scm>
 
 	<dependencies>
@@ -23,6 +23,13 @@
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 			<version>20150729</version>
+		</dependency>
+		<!-- Tests -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.9</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
