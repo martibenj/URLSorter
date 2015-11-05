@@ -1,27 +1,18 @@
 *.class
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
 # Package Files #
 *.jar
 *.war
 *.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-/target/
-
-
-
-*.class
-# Package Files #
-*.jar
-*.war
-*.ear
+*.idea
+*.iml
+bower.json
+.bowerrc
+.settings/
+.project
+.classpath
 hs_err_pid*
 target/
-bin/
+node_modules/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -30,8 +21,5 @@ release.properties
 dependency-reduced-pom.xml
 gen/*
 R.java
-.classpath
-.idea
-.project
-.settings
-*.iml
+img/*
+srvKapoue/cliKapoue/lib/
