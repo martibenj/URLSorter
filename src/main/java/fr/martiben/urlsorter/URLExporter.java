@@ -11,7 +11,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import fr.martiben.urlsorter.comparator.VideoComparator;
+import fr.martiben.urlsorter.constante.Constantes;
 import fr.martiben.urlsorter.network.NetworkHelper;
+import fr.martiben.urlsorter.pojo.Episode;
 
 /**
  * URL Exporter from Playlist to URL collections sorted
@@ -20,15 +22,6 @@ import fr.martiben.urlsorter.network.NetworkHelper;
  */
 public class URLExporter
 {
-  /** Max limit per Request. */
-  private int                MAX_LIMIT_PER_REQUEST = 100;
-
-  /** Token for param Limit. */
-  public static final String TOKEN_LIMIT           = "%LIMIT%";
-
-  /** Token for param Page. */
-  public static final String TOKEN_PAGE            = "%PAGE%";
-
   /**
    * URL sorter from Playlist
    * 
@@ -39,7 +32,7 @@ public class URLExporter
    * @throws JSONException
    *           Json parsing exception
    */
-  public void URLSorter(final String baseUrl) throws IOException, JSONException
+  public List<Episode> URLSorter(final String baseUrl) throws IOException, JSONException
   {
     // Declarations
     JSONObject resultSearchElement = null;
@@ -47,17 +40,18 @@ public class URLExporter
     JSONArray jsonArrayURL = null;
     Iterator<?> itObjects = null;
     Iterator<JSONObject> itPages = null;
-    Iterator<String> itURL = null;
     final List<JSONObject> listJson = new ArrayList<JSONObject>();
-    final List<String> listURL = new ArrayList<String>();
+    final List<Episode> listEpisodeReturned = new ArrayList<Episode>();
 
     // Searching in playlist
     int nbPage = 1;
-    listJson.add(NetworkHelper.readJsonFromUrl(baseUrlBuilder(baseUrl, MAX_LIMIT_PER_REQUEST, nbPage)));
+    listJson.add(NetworkHelper.readJsonFromUrl(baseUrlBuilder(baseUrl, Constantes.MAX_LIMIT_PER_REQUEST,
+        nbPage)));
     while ((Boolean) listJson.get(listJson.size() - 1).get("has_more"))
     {
       nbPage++;
-      listJson.add(NetworkHelper.readJsonFromUrl(baseUrlBuilder(baseUrl, MAX_LIMIT_PER_REQUEST, nbPage)));
+      listJson.add(NetworkHelper.readJsonFromUrl(baseUrlBuilder(baseUrl, Constantes.MAX_LIMIT_PER_REQUEST,
+          nbPage)));
     }
 
     // Reading results
@@ -70,19 +64,20 @@ public class URLExporter
       while (itObjects.hasNext())
       {
         urlElement = (JSONObject) itObjects.next();
-        listURL.add(urlElement.get("url").toString());
+        listEpisodeReturned.add(Episode.parseEpisodeFromURL(urlElement.get("url").toString()));
       }
     }
 
     // Sorting results
-    Collections.sort(listURL, new VideoComparator());
+    Collections.sort(listEpisodeReturned, new VideoComparator());
+    return listEpisodeReturned;
+  }
 
-    // Showing Results
-    itURL = listURL.iterator();
-    while (itURL.hasNext())
-    {
-      System.out.println(itURL.next());
-    }
+  public static Boolean listChecker(List<Episode> listUrl, int... limitSeason)
+  {
+    Boolean retour = Boolean.FALSE;
+
+    return retour;
   }
 
   /**
@@ -99,7 +94,7 @@ public class URLExporter
   private String baseUrlBuilder(final String baseUrl, final Integer limit, final Integer page)
   {
     String baseUrlReturn = baseUrl.toString();
-    baseUrlReturn = baseUrlReturn.replace(URLExporter.TOKEN_LIMIT, limit.toString());
-    return baseUrlReturn.replace(URLExporter.TOKEN_PAGE, page.toString());
+    baseUrlReturn = baseUrlReturn.replace(Constantes.TOKEN_LIMIT, limit.toString());
+    return baseUrlReturn.replace(Constantes.TOKEN_PAGE, page.toString());
   }
 }
