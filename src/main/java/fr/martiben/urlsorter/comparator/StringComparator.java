@@ -2,8 +2,14 @@ package fr.martiben.urlsorter.comparator;
 
 import java.util.Comparator;
 
+/**
+ * Comparator for number in string to avoid the 69->7->70 problem.
+ * 
+ * @author B-Martinelli
+ */
 public class StringComparator implements Comparator<Object>
 {
+  /** {@inheritDoc} */
   @Override
   public int compare(final Object object1, final Object object2)
   {
@@ -93,6 +99,15 @@ public class StringComparator implements Comparator<Object>
     }
   }
 
+  /**
+   * Redefine the charAt.
+   * 
+   * @param pString
+   *          the string to search
+   * @param pInt
+   *          the indice
+   * @return Eventually returns the char at for the String
+   */
   private static char charAt(final String pString, final int pInt)
   {
     if (pInt >= pString.length())
@@ -105,6 +120,15 @@ public class StringComparator implements Comparator<Object>
     }
   }
 
+  /**
+   * Compare from the right.
+   * 
+   * @param numberA
+   *          the first
+   * @param numberB
+   *          the second
+   * @return the result of the comparison
+   */
   private int compareRight(final String numberA, final String numberB)
   {
     int bias = 0;

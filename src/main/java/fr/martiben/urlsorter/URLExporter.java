@@ -2,16 +2,16 @@ package fr.martiben.urlsorter;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import fr.martiben.urlsorter.comparator.VideoComparator;
-import fr.martiben.urlsorter.constante.Constantes;
+import fr.martiben.urlsorter.constante.Constants;
 import fr.martiben.urlsorter.network.NetworkHelper;
 import fr.martiben.urlsorter.pojo.Episode;
 
@@ -32,25 +32,26 @@ public class URLExporter
    * @throws JSONException
    *           Json parsing exception
    */
-  public List<Episode> URLSorter(final String baseUrl) throws IOException, JSONException
+  public Map<Episode, Episode> URLSorter(final String baseUrl) throws IOException, JSONException
   {
     // Declarations
     JSONObject resultSearchElement = null;
     JSONObject urlElement = null;
     JSONArray jsonArrayURL = null;
+    Episode episodeFromURL = null;
     Iterator<?> itObjects = null;
     Iterator<JSONObject> itPages = null;
     final List<JSONObject> listJson = new ArrayList<JSONObject>();
-    final List<Episode> listEpisodeReturned = new ArrayList<Episode>();
+    final Map<Episode, Episode> mapEpisodeReturned = new HashMap<Episode, Episode>();
 
     // Searching in playlist
     int nbPage = 1;
-    listJson.add(NetworkHelper.readJsonFromUrl(baseUrlBuilder(baseUrl, Constantes.MAX_LIMIT_PER_REQUEST,
+    listJson.add(NetworkHelper.readJsonFromUrl(baseUrlBuilder(baseUrl, Constants.MAX_LIMIT_PER_REQUEST,
         nbPage)));
     while ((Boolean) listJson.get(listJson.size() - 1).get("has_more"))
     {
       nbPage++;
-      listJson.add(NetworkHelper.readJsonFromUrl(baseUrlBuilder(baseUrl, Constantes.MAX_LIMIT_PER_REQUEST,
+      listJson.add(NetworkHelper.readJsonFromUrl(baseUrlBuilder(baseUrl, Constants.MAX_LIMIT_PER_REQUEST,
           nbPage)));
     }
 
@@ -64,20 +65,49 @@ public class URLExporter
       while (itObjects.hasNext())
       {
         urlElement = (JSONObject) itObjects.next();
-        listEpisodeReturned.add(Episode.parseEpisodeFromURL(urlElement.get("url").toString()));
+        episodeFromURL = Episode.parseEpisodeFromURL(urlElement.get("url").toString());
+        mapEpisodeReturned.put(episodeFromURL, episodeFromURL);
       }
     }
-
-    // Sorting results
-    Collections.sort(listEpisodeReturned, new VideoComparator());
-    return listEpisodeReturned;
+    return mapEpisodeReturned;
   }
 
-  public static Boolean listChecker(List<Episode> listUrl, int... limitSeason)
+  /**
+   * Check if episode are missing in a season.
+   * 
+   * @param collectionEpisodes
+   *          the initial collection of episodes to check
+   * @param limitsForSeasons
+   *          a list of limit for seasons in order. First param is for season 1, second param is for season 2
+   *          etc...
+   * @return The collection of episode that are missing in seasons
+   */
+  public static Map<Episode, Episode> missingEpisodeChecker(Map<Episode, Episode> collectionEpisodes,
+      int... limitsForSeasons)
   {
-    Boolean retour = Boolean.FALSE;
+    Map<Episode, Episode> retourMissingEp = new HashMap<Episode, Episode>();
+    Episode epFromMap = null;
+    Episode episodeToCheck = null;
+    int episodeTested = 1;
+    int seasonToCheck = 1;
 
-    return retour;
+    for (int limitOfASeason : limitsForSeasons)
+    {
+      seasonToCheck = 1;
+      episodeTested = 1;
+      while (episodeTested <= limitOfASeason)
+      {
+        episodeToCheck = new Episode(seasonToCheck, episodeTested, null);
+        epFromMap = collectionEpisodes.get(episodeToCheck);
+        if (epFromMap == null)
+        {
+          retourMissingEp.put(episodeToCheck, episodeToCheck);
+        }
+        episodeTested++;
+      }
+      seasonToCheck++;
+    }
+    return retourMissingEp;
   }
 
   /**
@@ -94,7 +124,7 @@ public class URLExporter
   private String baseUrlBuilder(final String baseUrl, final Integer limit, final Integer page)
   {
     String baseUrlReturn = baseUrl.toString();
-    baseUrlReturn = baseUrlReturn.replace(Constantes.TOKEN_LIMIT, limit.toString());
-    return baseUrlReturn.replace(Constantes.TOKEN_PAGE, page.toString());
+    baseUrlReturn = baseUrlReturn.replace(Constants.TOKEN_LIMIT, limit.toString());
+    return baseUrlReturn.replace(Constants.TOKEN_PAGE, page.toString());
   }
 }

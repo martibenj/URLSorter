@@ -2,9 +2,13 @@ package fr.martiben.urlsorter.constante;
 
 import java.util.regex.Pattern;
 
-public interface Constantes
+/**
+ * Constants for the project.
+ * 
+ * @author B-Martinelli
+ */
+public interface Constants
 {
-
   /** Separator. */
   public static final String  SEPARATOR             = "-";
 
@@ -29,5 +33,11 @@ public interface Constantes
 
   /** Token for param Page. */
   public static final String  TOKEN_PAGE            = "%PAGE%";
+
+  /** Proxy Host. */
+  public static final String  PROXY_HOST            = "ecprox.bull.fr";
+
+  /** Proxy port. */
+  public static final int     PROXY_PORT            = 80;
 
 }
