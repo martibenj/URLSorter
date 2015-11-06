@@ -14,7 +14,7 @@ import fr.martiben.urlsorter.helper.SortingHelper;
 import fr.martiben.urlsorter.pojo.Episode;
 
 /**
- * URL Exporter Test class.
+ * URL Sorter Test class.
  * 
  * @author B-Martinelli
  */
@@ -29,7 +29,7 @@ public class URLSorterTest
    *           Error on communication with daily
    */
   @Test
-  public void PalmaShowExportTest() throws JSONException, IOException
+  public void PalmaShowSorterTest() throws JSONException, IOException
   {
     String baseUrl = "https://api.dailymotion.com/playlist/x41df1/videos?fields=url,&limit="
         + Constants.TOKEN_LIMIT + "&page=" + Constants.TOKEN_PAGE;
@@ -51,8 +51,8 @@ public class URLSorterTest
   {
     String baseUrl = "https://api.dailymotion.com/playlist/x41df1/videos?fields=url,&limit="
         + Constants.TOKEN_LIMIT + "&page=" + Constants.TOKEN_PAGE;
-    Map<Episode, Episode> mapEpisodes = URLSorter.missingEpisodeChecker(
-        new URLSorter().URLSorter(baseUrl), 108, 86);
+    Map<Episode, Episode> mapEpisodes = URLSorter.missingEpisodeChecker(new URLSorter().URLSorter(baseUrl),
+        108, 86);
     displayResults(mapEpisodes, true, false);
     Assert.assertTrue("Objective is 0 delta, but is " + mapEpisodes.size(), mapEpisodes.size() == 0);
   }
