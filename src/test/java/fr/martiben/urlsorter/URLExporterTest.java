@@ -54,6 +54,7 @@ public class URLExporterTest
     Map<Episode, Episode> mapEpisodes = URLExporter.missingEpisodeChecker(
         new URLExporter().URLSorter(baseUrl), 108, 86);
     displayResults(mapEpisodes, true, false);
+    System.out.println(mapEpisodes.size());
     Assert.assertTrue(mapEpisodes.size() == 0);
   }
 
