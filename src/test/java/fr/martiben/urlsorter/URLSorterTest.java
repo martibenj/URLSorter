@@ -18,7 +18,7 @@ import fr.martiben.urlsorter.pojo.Episode;
  * 
  * @author B-Martinelli
  */
-public class URLExporterTest
+public class URLSorterTest
 {
   /**
    * Test the fetch of url from a playlist.
@@ -33,7 +33,7 @@ public class URLExporterTest
   {
     String baseUrl = "https://api.dailymotion.com/playlist/x41df1/videos?fields=url,&limit="
         + Constants.TOKEN_LIMIT + "&page=" + Constants.TOKEN_PAGE;
-    Map<Episode, Episode> mapURL = new URLExporter().URLSorter(baseUrl);
+    Map<Episode, Episode> mapURL = new URLSorter().URLSorter(baseUrl);
 
     displayResults(mapURL, false, true);
   }
@@ -51,8 +51,8 @@ public class URLExporterTest
   {
     String baseUrl = "https://api.dailymotion.com/playlist/x41df1/videos?fields=url,&limit="
         + Constants.TOKEN_LIMIT + "&page=" + Constants.TOKEN_PAGE;
-    Map<Episode, Episode> mapEpisodes = URLExporter.missingEpisodeChecker(
-        new URLExporter().URLSorter(baseUrl), 108, 86);
+    Map<Episode, Episode> mapEpisodes = URLSorter.missingEpisodeChecker(
+        new URLSorter().URLSorter(baseUrl), 108, 86);
     displayResults(mapEpisodes, true, false);
     Assert.assertTrue("Objective is 0 delta, but is " + mapEpisodes.size(), mapEpisodes.size() == 0);
   }
@@ -65,7 +65,6 @@ public class URLExporterTest
    */
   private void displayResults(Map<Episode, Episode> mapEpisodes, Boolean displayEpisodeId, Boolean displayURL)
   {
-
     // Showing Results
     Iterator<Episode> itEpisode = SortingHelper.SeasonSorter(mapEpisodes).iterator();
     Episode ep = null;

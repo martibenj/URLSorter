@@ -16,11 +16,11 @@ import fr.martiben.urlsorter.network.NetworkHelper;
 import fr.martiben.urlsorter.pojo.Episode;
 
 /**
- * URL Exporter from Playlist to URL collections sorted
+ * URL Sorter from Playlist to URL collections sorted
  * 
  * @author B-Martinelli
  */
-public class URLExporter
+public class URLSorter
 {
   /**
    * URL sorter from Playlist
