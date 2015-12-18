@@ -34,7 +34,7 @@ public class VideoIdComparator implements Comparator<Episode>
     {
       retour = 1;
     }
-    else if (a.getSeason() == (b.getSeason()))
+    else if (a.getSeason().equals(b.getSeason()))
     {
       if (a.getEpisode() < b.getEpisode())
       {
@@ -44,10 +44,15 @@ public class VideoIdComparator implements Comparator<Episode>
       {
         retour = 1;
       }
-      else if (a.getEpisode() == b.getEpisode())
+      else if (a.getEpisode().equals(b.getEpisode()))
       {
         retour = 0;
       }
+    }
+    if (retour == null)
+    {
+      throw new UnsupportedOperationException("No result found in comparison between " + a.toString()
+          + " and " + b.toString());
     }
     return retour;
   }

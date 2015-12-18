@@ -1,16 +1,14 @@
 package fr.martiben.urlsorter;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.junit.Assert;
 import org.junit.Test;
 
 import fr.martiben.urlsorter.constante.Constants;
-import fr.martiben.urlsorter.helper.SortingHelper;
+import fr.martiben.urlsorter.helper.DisplayEpisodeHelper;
 import fr.martiben.urlsorter.pojo.Episode;
 
 /**
@@ -33,9 +31,12 @@ public class URLSorterTest
   {
     String baseUrl = "https://api.dailymotion.com/playlist/x41df1/videos?fields=url,&limit="
         + Constants.TOKEN_LIMIT + "&page=" + Constants.TOKEN_PAGE;
-    Map<Episode, Episode> mapURL = new URLSorter().URLSorter(baseUrl);
+    Map<Episode, Episode> mapURL = new URLSorter().urlSortingMachine(baseUrl);
 
-    displayResults(mapURL, false, true);
+    Assert.assertNotNull("The list is null !", mapURL);
+    Assert.assertTrue("The list is empty !", mapURL.size() != 0);
+
+    DisplayEpisodeHelper.displayResults(mapURL, false, true);
   }
 
   /**
@@ -51,37 +52,10 @@ public class URLSorterTest
   {
     String baseUrl = "https://api.dailymotion.com/playlist/x41df1/videos?fields=url,&limit="
         + Constants.TOKEN_LIMIT + "&page=" + Constants.TOKEN_PAGE;
-    Map<Episode, Episode> mapEpisodes = URLSorter.missingEpisodeChecker(new URLSorter().URLSorter(baseUrl),
-        108, 86);
-    displayResults(mapEpisodes, true, false);
-    Assert.assertTrue("Objective is 0 delta, but is " + mapEpisodes.size(), mapEpisodes.size() == 0);
-  }
+    Map<Episode, Episode> mapEpisodes = URLSorter.missingEpisodeChecker(new URLSorter().urlSortingMachine(baseUrl),
+        Constants.SEASON_1_EPISODES_AMOUNT, Constants.SEASON_2_EPISODES_AMOUNT);
+    DisplayEpisodeHelper.displayResults(mapEpisodes, true, false);
 
-  /**
-   * Method to display the results from a Map
-   * 
-   * @param mapEpisodes
-   *          The map to display
-   */
-  private void displayResults(Map<Episode, Episode> mapEpisodes, Boolean displayEpisodeId, Boolean displayURL)
-  {
-    // Showing Results
-    Iterator<Episode> itEpisode = SortingHelper.SeasonSorter(mapEpisodes).iterator();
-    Episode ep = null;
-    while (itEpisode.hasNext())
-    {
-      ep = itEpisode.next();
-      if (ep != null)
-      {
-        if (displayEpisodeId && ep.getSeason() != null && ep.getEpisode() != null)
-        {
-          System.out.println("Saison " + ep.getSeason() + " Episode " + ep.getEpisode());
-        }
-        if (displayURL && ep.getUrl() != null && StringUtils.isBlank(ep.getUrl().toString()) == false)
-        {
-          System.out.println(ep.getUrl().toString());
-        }
-      }
-    }
+    Assert.assertEquals("Objective is 0 delta, but is actually " + mapEpisodes.size(), 0, mapEpisodes.size());
   }
 }

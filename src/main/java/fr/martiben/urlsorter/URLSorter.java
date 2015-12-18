@@ -32,7 +32,7 @@ public class URLSorter
    * @throws JSONException
    *           Json parsing exception
    */
-  public Map<Episode, Episode> URLSorter(final String baseUrl) throws IOException, JSONException
+  public Map<Episode, Episode> urlSortingMachine(final String baseUrl) throws IOException, JSONException
   {
     // Declarations
     JSONObject resultSearchElement = null;

@@ -13,7 +13,7 @@ import fr.martiben.urlsorter.pojo.Episode;
  * 
  * @author B-Martinelli
  */
-public class SortingHelper
+public final class SortingHelper
 {
   /**
    * Sort a Map of episodes
