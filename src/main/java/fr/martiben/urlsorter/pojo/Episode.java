@@ -53,7 +53,7 @@ public class Episode
   public static Episode parseEpisodeFromURL(String url) throws NumberFormatException, MalformedURLException
   {
     Episode ep = null;
-    Matcher matcher = Constants.PATTERN.matcher(url);
+    Matcher matcher = Constants.PATTERN_SEASON_EPISODE.matcher(url);
     if (matcher.find())
     {
       String[] arrayInfos = url.substring(matcher.start(), matcher.end()).split(Constants.SEPARATOR);
@@ -70,6 +70,7 @@ public class Episode
     int result = 1;
     result = prime * result + ((episode == null) ? 0 : episode.hashCode());
     result = prime * result + ((season == null) ? 0 : season.hashCode());
+    result = prime * result + ((url == null) ? 0 : url.hashCode());
     return result;
   }
 

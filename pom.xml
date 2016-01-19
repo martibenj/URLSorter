@@ -29,10 +29,11 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
 		</dependency>
+		<!-- Youtube -->
 		<dependency>
-			<groupId>com.google.api-client</groupId>
-			<artifactId>google-api-client</artifactId>
-			<version>1.21.0</version>
+			<groupId>com.google.apis</groupId>
+			<artifactId>google-api-services-youtube</artifactId>
+			<version>v3-rev159-1.21.0</version>
 		</dependency>
 		<!-- Tests -->
 		<dependency>

@@ -20,8 +20,8 @@ public class VideoURLComparator implements Comparator<Episode>
     String urlA = a.getUrl().toString();
     String urlB = b.getUrl().toString();
 
-    Matcher matcherA = Constants.PATTERN.matcher(urlA);
-    Matcher matcherB = Constants.PATTERN.matcher(urlB);
+    Matcher matcherA = Constants.PATTERN_SEASON_EPISODE.matcher(urlA);
+    Matcher matcherB = Constants.PATTERN_SEASON_EPISODE.matcher(urlB);
 
     if (!matcherA.find() || !matcherB.find())
     {
