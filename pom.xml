@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>fr.martiben.urlsorter</groupId>
-	<artifactId>url-sorter</artifactId>
+	<groupId>fr.martiben.urlgrabber</groupId>
+	<artifactId>url-grabber</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
-	<name>URL Sorter</name>
-	<description>URL Sorter from playlist</description>
+	<name>URL Grabber</name>
+	<description>URL Grabber from playlist</description>
 
 	<organization>
 		<name>Martiben Inc.</name>
@@ -13,16 +13,16 @@
 	</organization>
 
 	<scm>
-		<connection>scm:git:https://github.com/martibenj/urlSorter.git</connection>
-		<url>https://github.com/martibenj/urlSorter.git</url>
-		<developerConnection>https://github.com/martibenj/urlSorter.git</developerConnection>
+		<connection>scm:git:https://github.com/martibenj/urlGrabber.git</connection>
+		<url>https://github.com/martibenj/urlGrabber.git</url>
+		<developerConnection>https://github.com/martibenj/urlGrabber.git</developerConnection>
 	</scm>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
-			<version>20150729</version>
+			<version>20140107</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -51,8 +51,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.3</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>1.7</source>
+					<target>1.7</target>
 					<encoding>UTF-8</encoding>
 					<optimize>true</optimize>
 				</configuration>

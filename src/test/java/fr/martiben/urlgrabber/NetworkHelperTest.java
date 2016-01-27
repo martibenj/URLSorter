@@ -1,4 +1,4 @@
-package fr.martiben.urlsorter;
+package fr.martiben.urlgrabber;
 
 /**
  * NetworkHelper Test class.

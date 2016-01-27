@@ -1,10 +1,10 @@
-package fr.martiben.urlsorter.pojo;
+package fr.martiben.urlgrabber.pojo;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.regex.Matcher;
 
-import fr.martiben.urlsorter.constante.Constants;
+import fr.martiben.urlgrabber.constante.Constants;
 
 /**
  * POJO for an Episode.
@@ -14,10 +14,10 @@ import fr.martiben.urlsorter.constante.Constants;
 public class Episode
 {
   /** Season. */
-  private Integer season;
+  private Integer seasonNumber;
 
   /** Episode. */
-  private Integer episode;
+  private Integer episodeNumber;
 
   /** URL. */
   private URL     url;
@@ -25,17 +25,17 @@ public class Episode
   /**
    * Constructor.
    * 
-   * @param season
+   * @param seasonNumber
    *          Season number
-   * @param episode
+   * @param episodeNumber
    *          episode number
    * @param url
    *          the url to the episode
    */
-  public Episode(Integer season, Integer episode, URL url)
+  public Episode(Integer seasonNumber, Integer episodeNumber, URL url)
   {
-    this.season = season;
-    this.episode = episode;
+    this.seasonNumber = seasonNumber;
+    this.episodeNumber = episodeNumber;
     this.url = url;
   }
 
@@ -68,8 +68,8 @@ public class Episode
   {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((episode == null) ? 0 : episode.hashCode());
-    result = prime * result + ((season == null) ? 0 : season.hashCode());
+    result = prime * result + ((episodeNumber == null) ? 0 : episodeNumber.hashCode());
+    result = prime * result + ((seasonNumber == null) ? 0 : seasonNumber.hashCode());
     result = prime * result + ((url == null) ? 0 : url.hashCode());
     return result;
   }
@@ -91,25 +91,25 @@ public class Episode
       return false;
     }
     Episode other = (Episode) obj;
-    if (episode == null)
+    if (episodeNumber == null)
     {
-      if (other.episode != null)
+      if (other.episodeNumber != null)
       {
         return false;
       }
     }
-    else if (!episode.equals(other.episode))
+    else if (!episodeNumber.equals(other.episodeNumber))
     {
       return false;
     }
-    if (season == null)
+    if (seasonNumber == null)
     {
-      if (other.season != null)
+      if (other.seasonNumber != null)
       {
         return false;
       }
     }
-    else if (!season.equals(other.season))
+    else if (!seasonNumber.equals(other.seasonNumber))
     {
       return false;
     }
@@ -120,7 +120,7 @@ public class Episode
   @Override
   public String toString()
   {
-    return "Season " + season + " Episode " + episode + "\n" + url.toString();
+    return "Season " + seasonNumber + " Episode " + episodeNumber + "\n" + url.toString();
   }
 
   /**
@@ -141,37 +141,36 @@ public class Episode
   }
 
   /**
-   * @return the season
+   * @return the seasonNumber
    */
-  public Integer getSeason()
+  public Integer getSeasonNumber()
   {
-    return season;
+    return seasonNumber;
   }
 
   /**
-   * @param season
+   * @param seasonNumber
    *          the season to set
    */
-  public void setSeason(Integer season)
+  public void setSeasonNumber(Integer seasonNumber)
   {
-    this.season = season;
+    this.seasonNumber = seasonNumber;
   }
 
   /**
-   * @return the episode
+   * @return the episodeNumber
    */
-  public Integer getEpisode()
+  public Integer getEpisodeNumber()
   {
-    return episode;
+    return episodeNumber;
   }
 
   /**
-   * @param episode
+   * @param episodeNumber
    *          the episode to set
    */
-  public void setEpisode(Integer episode)
+  public void setEpisodeNumber(Integer episodeNumber)
   {
-    this.episode = episode;
+    this.episodeNumber = episodeNumber;
   }
-
 }

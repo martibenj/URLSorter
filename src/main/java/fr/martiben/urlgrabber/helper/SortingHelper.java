@@ -1,12 +1,12 @@
-package fr.martiben.urlsorter.helper;
+package fr.martiben.urlgrabber.helper;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import fr.martiben.urlsorter.comparator.VideoIdComparator;
-import fr.martiben.urlsorter.pojo.Episode;
+import fr.martiben.urlgrabber.comparator.VideoIdComparator;
+import fr.martiben.urlgrabber.pojo.Episode;
 
 /**
  * Helper for Sorting elements.

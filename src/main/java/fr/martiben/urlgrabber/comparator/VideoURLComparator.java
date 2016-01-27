@@ -1,10 +1,10 @@
-package fr.martiben.urlsorter.comparator;
+package fr.martiben.urlgrabber.comparator;
 
 import java.util.Comparator;
 import java.util.regex.Matcher;
 
-import fr.martiben.urlsorter.constante.Constants;
-import fr.martiben.urlsorter.pojo.Episode;
+import fr.martiben.urlgrabber.constante.Constants;
+import fr.martiben.urlgrabber.pojo.Episode;
 
 /**
  * Comparator based on Video URL.

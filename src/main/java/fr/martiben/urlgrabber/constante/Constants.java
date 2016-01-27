@@ -1,4 +1,4 @@
-package fr.martiben.urlsorter.constante;
+package fr.martiben.urlgrabber.constante;
 
 import java.util.regex.Pattern;
 

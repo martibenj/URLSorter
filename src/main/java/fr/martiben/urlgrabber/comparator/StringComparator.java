@@ -1,4 +1,4 @@
-package fr.martiben.urlsorter.comparator;
+package fr.martiben.urlgrabber.comparator;
 
 import java.util.Comparator;
 

@@ -1,12 +1,12 @@
-package fr.martiben.urlsorter.helper;
+package fr.martiben.urlgrabber.helper;
 
 import java.util.Iterator;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
-import fr.martiben.urlsorter.constante.Constants;
-import fr.martiben.urlsorter.pojo.Episode;
+import fr.martiben.urlgrabber.constante.Constants;
+import fr.martiben.urlgrabber.pojo.Episode;
 
 /**
  * Helper for displaying Episodes infos.
@@ -35,11 +35,11 @@ public final class DisplayEpisodeHelper
       ep = itEpisode.next();
       if (ep != null)
       {
-        if (displayEpisodeId && ep.getSeason() != null && ep.getEpisode() != null)
+        if (displayEpisodeId && ep.getSeasonNumber() != null && ep.getEpisodeNumber() != null)
         {
-          System.out.println(Constants.TERM_SEASON + Constants.SEPARATOR_SPACE + ep.getSeason()
+          System.out.println(Constants.TERM_SEASON + Constants.SEPARATOR_SPACE + ep.getSeasonNumber()
               + Constants.SEPARATOR_SPACE + Constants.TERM_EPISODE + Constants.SEPARATOR_SPACE
-              + ep.getEpisode());
+              + ep.getEpisodeNumber());
         }
         if (displayURL && ep.getUrl() != null && StringUtils.isBlank(ep.getUrl().toString()) == false)
         {

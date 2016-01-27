@@ -1,4 +1,4 @@
-package fr.martiben.urlsorter.network;
+package fr.martiben.urlgrabber.network;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,15 +9,16 @@ import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.UnknownHostException;
 import java.nio.charset.Charset;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import fr.martiben.urlsorter.constante.Constants;
+import fr.martiben.urlgrabber.constante.Constants;
 
 /**
- * Helper for Connections
+ * Helper for Connections.
  * 
  * @author B-Martinelli
  */
@@ -60,7 +61,17 @@ public final class NetworkHelper
     Proxy proxy = new Proxy(Proxy.Type.HTTP,
         new InetSocketAddress(Constants.PROXY_HOST, Constants.PROXY_PORT));
     URLConnection urlC = new URL(url).openConnection(proxy);
-    InputStream is = urlC.getInputStream();
+    InputStream is;
+    try
+    {
+      is = urlC.getInputStream();
+    }
+    catch (UnknownHostException e)
+    {
+      // Error using proxy, let's try without proxy
+      urlC = new URL(url).openConnection();
+      is = urlC.getInputStream();
+    }
 
     try
     {

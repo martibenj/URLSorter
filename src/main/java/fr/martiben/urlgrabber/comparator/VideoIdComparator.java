@@ -1,8 +1,8 @@
-package fr.martiben.urlsorter.comparator;
+package fr.martiben.urlgrabber.comparator;
 
 import java.util.Comparator;
 
-import fr.martiben.urlsorter.pojo.Episode;
+import fr.martiben.urlgrabber.pojo.Episode;
 
 /**
  * Comparator based on Video id (Season number and Episode number).
@@ -16,8 +16,8 @@ public class VideoIdComparator implements Comparator<Episode>
   public int compare(Episode a, Episode b)
   {
     Integer retour = null;
-    if (a == null || b == null || a.getSeason() == null || b.getSeason() == null || a.getEpisode() == null
-        || b.getEpisode() == null)
+    if (a == null || b == null || a.getSeasonNumber() == null || b.getSeasonNumber() == null || a.getEpisodeNumber() == null
+        || b.getEpisodeNumber() == null)
     {
       throw new UnsupportedOperationException("An Episode has null infos");
     }
@@ -26,25 +26,25 @@ public class VideoIdComparator implements Comparator<Episode>
     {
       retour = 0;
     }
-    else if (a.getSeason() < (b.getSeason()))
+    else if (a.getSeasonNumber() < (b.getSeasonNumber()))
     {
       retour = -1;
     }
-    else if (a.getSeason() > (b.getSeason()))
+    else if (a.getSeasonNumber() > (b.getSeasonNumber()))
     {
       retour = 1;
     }
-    else if (a.getSeason().equals(b.getSeason()))
+    else if (a.getSeasonNumber().equals(b.getSeasonNumber()))
     {
-      if (a.getEpisode() < b.getEpisode())
+      if (a.getEpisodeNumber() < b.getEpisodeNumber())
       {
         retour = -1;
       }
-      else if (a.getEpisode() > b.getEpisode())
+      else if (a.getEpisodeNumber() > b.getEpisodeNumber())
       {
         retour = 1;
       }
-      else if (a.getEpisode().equals(b.getEpisode()))
+      else if (a.getEpisodeNumber().equals(b.getEpisodeNumber()))
       {
         retour = 0;
       }
