@@ -70,7 +70,6 @@ public class Episode
     int result = 1;
     result = prime * result + ((episodeNumber == null) ? 0 : episodeNumber.hashCode());
     result = prime * result + ((seasonNumber == null) ? 0 : seasonNumber.hashCode());
-    result = prime * result + ((url == null) ? 0 : url.hashCode());
     return result;
   }
 

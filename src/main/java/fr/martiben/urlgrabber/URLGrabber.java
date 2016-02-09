@@ -90,7 +90,7 @@ public class URLGrabber
   private Map<Episode, Episode> extractVideosFromJSONResponses(Provider pProvider,
       final List<JSONObject> pListResponses) throws MalformedURLException
   {
-    final Map<Episode, Episode> mapEpisodeReturned = new HashMap<Episode, Episode>();
+    final Map<Episode, Episode> mapEpisodeReturned = new HashMap<Episode, Episode>() ;
     JSONObject resultSearchElement = null;
     JSONObject urlElement = null;
     JSONArray jsonArrayURL = null;
@@ -98,6 +98,7 @@ public class URLGrabber
     Iterator<JSONObject> itPages = null;
     Episode episode = null;
 
+    
     itPages = pListResponses.iterator();
     while (itPages.hasNext())
     {

@@ -3,6 +3,7 @@ package fr.martiben.urlgrabber.pojo;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.Random;
 import java.util.regex.Matcher;
 
 import org.json.JSONObject;
@@ -86,7 +87,7 @@ public enum Provider
    * @return An Episode
    * @throws MalformedURLException
    *           Error in URL Parsing
-   */
+   */ 
   public Episode getEpisodeFromJSONURLElement(JSONObject urlElement) throws MalformedURLException
   {
     Episode retour = null;
@@ -96,7 +97,7 @@ public enum Provider
       case YOUTUBE:
         String videoId = (String) ((JSONObject) urlElement.get("id")).get("videoId");
         url = Constants.WATCH_YOUTUBE_TEMPLATE + videoId;
-        retour = new Episode(new Integer(0), new Integer(0), new URL(url));
+        retour = new Episode(new Integer(-1), new Random().nextInt(), new URL(url));
         break;
 
       case DAILYMOTION:
@@ -212,4 +213,5 @@ public enum Provider
     }
     return retour;
   }
+
 }
