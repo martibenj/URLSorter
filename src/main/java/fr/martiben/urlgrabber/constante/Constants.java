@@ -60,10 +60,10 @@ public interface Constants
   public static final String  TOKEN_YOUTUBE_KEY             = "%KEY%";
 
   /** Proxy Host. */
-  public static final String  PROXY_HOST                    = "ecprox.bull.fr";
+  public static final String  PROXY_HOST                    = "193.56.47.20";
 
   /** Proxy port. */
-  public static final int     PROXY_PORT                    = 80;
+  public static final int     PROXY_PORT                    = 8080;
 
   /** Amount of episodes for Season 1. */
   public static final int     SEASON_1_EPISODES_AMOUNT      = 108;
